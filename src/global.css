@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital,wght@1,400;1,500;1,600;1,700&family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&family=Varela&family=Varela+Round&display=swap");
+@import url("https://fonts.cdnfonts.com/css/cubano");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: rabar-39;
+  src: url(/fonts/Rabar_039.ttf);
+}
+input,
+textarea:is(:focus) {
+  outline: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #f1a068; /* Change this to your desired track color */
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #242424; /* Change this to your desired thumb color */
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #242424;
+}
+::-webkit-scrollbar-corner {
+  background-color: #f1a068; /* Change this to your desired corner color */
+}
+
+aside::-webkit-scrollbar {
+  display: none !important;
+}
+
+@layer components {
+  section {
+    @apply min-h-screen p-2 flex flex-row justify-center items-start bg-primary-500 text-white;
+  }
+}

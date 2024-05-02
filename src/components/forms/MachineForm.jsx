@@ -25,8 +25,8 @@ const MachineForm = () => {
 
   useEffect(() => {
     if (data && type === "update") {
-      name.current.value = data?.name;
-      machine_function.current.value = data?.machine_function;
+      name.current.value = data?.machine_name;
+      machine_function.current.value = data?.function;
       user_id.current.value = data?.user_id;
     }
   }, [data]);

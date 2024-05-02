@@ -58,7 +58,7 @@ export const addOil = async (form) => {
   try {
     const {
       data: { data },
-    } = await authApi.put(`${URLs.ADD_OIL}`, form);
+    } = await authApi.post(`${URLs.ADD_OIL}`, form);
     return data;
   } catch (error) {
     throw error;

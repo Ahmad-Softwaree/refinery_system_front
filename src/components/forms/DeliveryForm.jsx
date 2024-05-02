@@ -21,6 +21,7 @@ const DeliveryForm = () => {
 
   useEffect(() => {
     if (data && type === "update") {
+      console.log(data);
       shipping_type.current.value = data?.shipping_type;
       date_of_delivery.current.value = data?.date_of_delivery;
     }
@@ -46,7 +47,7 @@ const DeliveryForm = () => {
       </h2>
       <FormControl>
         <FormLabel>Shipping Type</FormLabel>
-        <Input ref={shipping_type} type="number" />
+        <Input ref={shipping_type} type="text" />
       </FormControl>
 
       <FormControl>

@@ -42,7 +42,7 @@ export const addStorage = async (form) => {
   try {
     const {
       data: { data },
-    } = await authApi.put(`${URLs.ADD_STORAGE}`, form);
+    } = await authApi.post(`${URLs.ADD_STORAGE}`, form);
     return data;
   } catch (error) {
     throw error;

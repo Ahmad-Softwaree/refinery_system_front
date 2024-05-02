@@ -42,7 +42,7 @@ export const addOrder = async (form) => {
   try {
     const {
       data: { data },
-    } = await authApi.put(`${URLs.ADD_ORDER}`, form);
+    } = await authApi.post(`${URLs.ADD_ORDER}`, form);
     return data;
   } catch (error) {
     throw error;

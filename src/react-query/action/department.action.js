@@ -58,7 +58,7 @@ export const addDepartment = async (form) => {
   try {
     const {
       data: { data },
-    } = await authApi.put(`${URLs.ADD_DEPARTMENT}`, form);
+    } = await authApi.post(`${URLs.ADD_DEPARTMENT}`, form);
     return data;
   } catch (error) {
     throw error;

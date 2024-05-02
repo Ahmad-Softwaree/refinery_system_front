@@ -42,7 +42,7 @@ export const addMachine = async (form) => {
   try {
     const {
       data: { data },
-    } = await authApi.put(`${URLs.ADD_MACHINE}`, form);
+    } = await authApi.post(`${URLs.ADD_MACHINE}`, form);
     return data;
   } catch (error) {
     throw error;

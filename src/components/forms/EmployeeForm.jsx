@@ -16,7 +16,7 @@ const EmployeeForm = () => {
   const { data: departments, isPending: departmentsLoading } =
     useGetAllDepartments();
 
-  const user_name = useRef();
+  const name = useRef();
   const email = useRef();
   const phone = useRef();
   const age = useRef();
@@ -24,15 +24,17 @@ const EmployeeForm = () => {
   const salary = useRef();
   const password = useRef();
   const dep_id = useRef();
+  const position = useRef();
   const formRef = useRef();
 
   useEffect(() => {
     if (data && type === "update") {
-      user_name.current.value = data?.user_name;
+      name.current.value = data?.user_name;
       email.current.value = data?.email;
       phone.current.value = data?.phone;
       dep_id.current.value = data?.dep_id;
       age.current.value = data?.age;
+      position.current.value = data?.position;
       gender.current.value = data?.gender;
       salary.current.value = data?.salary;
     }
@@ -44,7 +46,7 @@ const EmployeeForm = () => {
       onSubmit={async (e) => {
         e.preventDefault();
         await mutateAsync({
-          user_name: user_name.current.value,
+          name: name.current.value,
           email: email.current.value,
           phone: phone.current.value,
           age: age.current.value,
@@ -52,6 +54,7 @@ const EmployeeForm = () => {
           salary: salary.current.value,
           password: password.current.value,
           dep_id: dep_id.current.value,
+          position: position.current.value,
           role: "employee",
         });
         formRef.current.reset();
@@ -65,7 +68,7 @@ const EmployeeForm = () => {
       </h2>
       <FormControl>
         <FormLabel>Name</FormLabel>
-        <Input ref={user_name} type="text" />
+        <Input ref={name} type="text" />
       </FormControl>
       <FormControl>
         <FormLabel>Email</FormLabel>
@@ -86,6 +89,10 @@ const EmployeeForm = () => {
       <FormControl>
         <FormLabel>Salary</FormLabel>
         <Input ref={salary} type="number" />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Position</FormLabel>
+        <Input ref={position} type="text" />
       </FormControl>
       <FormControl>
         <FormLabel>Gender</FormLabel>

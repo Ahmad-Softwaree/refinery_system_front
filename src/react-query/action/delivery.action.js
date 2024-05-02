@@ -42,7 +42,7 @@ export const addDelivery = async (form) => {
   try {
     const {
       data: { data },
-    } = await authApi.put(`${URLs.ADD_DELIVERY}`, form);
+    } = await authApi.post(`${URLs.ADD_DELIVERY}`, form);
     return data;
   } catch (error) {
     throw error;

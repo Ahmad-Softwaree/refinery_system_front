@@ -11,7 +11,7 @@ export default function MachineCard({ index, val }) {
   const { dispatch: util } = useContext(UtilContext);
   return (
     <TableRow>
-      <TableCell>{val.id}</TableCell>
+      <TableCell>{val.machine_id}</TableCell>
       <TableCell>{val?.machine_name}</TableCell>
       <TableCell>{val?.function}</TableCell>
       <TableCell>{val?.user_name}</TableCell>

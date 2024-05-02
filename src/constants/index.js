@@ -15,7 +15,7 @@ export const homeParts = [
     link: "/machines",
     image: "/images/production.png",
     text: "Machines",
-    role: ["manager", "employee"],
+    role: ["manager"],
   },
   {
     link: "/oils",

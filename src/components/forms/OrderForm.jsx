@@ -1,10 +1,10 @@
 import { UiContext } from "@/context/UiContext";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FormControl, FormLabel, Input, Select } from "@chakra-ui/react";
 import { CONTEXT_TYPEs } from "@/context";
 import { Loader } from "../shared";
 import { useAddOrder, useUpdateOrder } from "@/react-query/query/order.query";
-import { useGetAllOils } from "@/react-query/query/oil.query";
+import { useGetAllOils, useGetOil } from "@/react-query/query/oil.query";
 const OrderForm = () => {
   const {
     dispatch,
@@ -14,9 +14,15 @@ const OrderForm = () => {
     type !== "update" ? useAddOrder() : useUpdateOrder(id);
   const { data: oils, isPending: oilsLoading } = useGetAllOils();
 
-  const amount_in_barel = useRef();
-  const price = useRef();
-  const oil_id = useRef();
+  const [amount_of_barel, setAmountOfBarel] = useState(0);
+  const [price, setPrice] = useState(0);
+
+  const [oil_id, setOilId] = useState(null);
+  const {
+    data: oneOil,
+    isPending: oilLoading,
+    refetch,
+  } = useGetOil(oil_id || "");
 
   const location = useRef();
 
@@ -24,12 +30,24 @@ const OrderForm = () => {
 
   useEffect(() => {
     if (data && type === "update") {
-      amount_in_barel.current.value = data?.amount_in_barel;
+      setAmountOfBarel(data?.amount_of_barel);
       location.current.value = data?.location;
-      oil_id.current.value = data?.oil_id;
-      price.current.value = data?.price;
+      setOilId(data?.oil_id);
+      setPrice(data?.price);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (oil_id !== "" && oil_id) {
+      refetch();
+    }
+  }, [oil_id]);
+
+  useEffect(() => {
+    if (oneOil) {
+      setPrice(oneOil.price * amount_of_barel);
+    }
+  }, [oneOil, amount_of_barel]);
 
   return (
     <form
@@ -37,10 +55,10 @@ const OrderForm = () => {
       onSubmit={async (e) => {
         e.preventDefault();
         await mutateAsync({
-          amount_in_barel: amount_in_barel.current.value,
+          amount_of_barel,
           location: location.current.value,
-          oil_id: oil_id.current.value,
-          price: location.current.value,
+          oil_id: oil_id,
+          price,
         });
         formRef.current.reset();
         dispatch({
@@ -52,20 +70,11 @@ const OrderForm = () => {
         {type !== "update" ? "Add" : "Update"} Order
       </h2>
       <FormControl>
-        <FormLabel>Amount In Barel</FormLabel>
-        <Input ref={amount_in_barel} type="number" />
-      </FormControl>
-      <FormControl>
-        <FormLabel>Location</FormLabel>
-        <Input ref={location} type="text" />
-      </FormControl>
-      <FormControl>
-        <FormLabel>Price</FormLabel>
-        <Input ref={price} type="number" />
-      </FormControl>
-      <FormControl>
         <FormLabel>Oil</FormLabel>
-        <Select ref={oil_id} placeholder="Select Oil">
+        <Select
+          onChange={(e) => setOilId(e.target.value)}
+          value={oil_id}
+          placeholder="Select Oil">
           {oils?.map((val, index) => {
             return (
               <option key={index} className="text-primary-500" value={val.id}>
@@ -75,6 +84,23 @@ const OrderForm = () => {
           })}
         </Select>
       </FormControl>
+      <FormControl>
+        <FormLabel>Amount In Barel</FormLabel>
+        <Input
+          onChange={(e) => setAmountOfBarel(e.target.value)}
+          value={amount_of_barel}
+          type="number"
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Location</FormLabel>
+        <Input ref={location} type="text" />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Price</FormLabel>
+        <Input disabled value={price} type="number" />
+      </FormControl>
+
       <button
         type="submit"
         disabled={isPending}

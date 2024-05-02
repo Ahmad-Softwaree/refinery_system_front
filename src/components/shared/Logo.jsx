@@ -8,7 +8,7 @@ const Logo = ({ size = "sm", className, fallback = false }) => {
       <div className="relative w-[30px]">
         <img src="/images/logo.png" alt="logo" />
       </div>
-      {!fallback && <span className="text-text1-bold">PMS</span>}
+      {!fallback && <span className="text-text1-bold">RMS</span>}
     </Link>
   ) : size === "md" ? (
     <Link
@@ -17,7 +17,7 @@ const Logo = ({ size = "sm", className, fallback = false }) => {
       <div className="relative w-[40px]">
         <img src="/images/logo.png" alt="logo" />
       </div>
-      {!fallback && <span className="text-body1-bold">PMS</span>}
+      {!fallback && <span className="text-body1-bold">RMS</span>}
     </Link>
   ) : size === "lg" ? (
     <Link
@@ -26,7 +26,7 @@ const Logo = ({ size = "sm", className, fallback = false }) => {
       <div className="relative w-[60px]">
         <img src="/images/logo.png" alt="logo" />
       </div>
-      {!fallback && <span className="text-heading2-bold">PMS</span>}
+      {!fallback && <span className="text-heading2-bold">RMS</span>}
     </Link>
   ) : (
     <Link
@@ -35,7 +35,7 @@ const Logo = ({ size = "sm", className, fallback = false }) => {
       <div className="relative w-[200px]">
         <img src="/images/logo.png" alt="logo" />
       </div>
-      {!fallback && <span className="text-heading-bold">PMS</span>}
+      {!fallback && <span className="text-heading-bold">RMS</span>}
     </Link>
   );
 };

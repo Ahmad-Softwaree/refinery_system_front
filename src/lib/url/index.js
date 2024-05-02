@@ -11,61 +11,63 @@ export const URLs = {
 
   UPDATE_PROFILE: `${API}/auth/profile`,
 
-  //MANAGER
-
-  GET_MANAGERS: `${API}/manager`,
-  GET_MANAGER: `${API}/manager`,
-  UPDATE_MANAGER: `${API}/manager`,
-  DELETE_MANAGER: `${API}/manager`,
-  MAKE_EMPLOYEE: `${API}/manager/employee`,
-  MAKE_HIGH_MANAGER: `${API}/manager/high_manager`,
-
   //EMPLOYEE
 
   GET_EMPLOYEES: `${API}/employee`,
+  GET_ALL_EMPLOYEES: `${API}/employee/all`,
   GET_EMPLOYEE: `${API}/employee`,
   UPDATE_EMPLOYEE: `${API}/employee`,
   DELETE_EMPLOYEE: `${API}/employee`,
-  MAKE_MANAGER: `${API}/employee/manager`,
 
-  //CUSTOMER
+  //DEPARTMENT
 
-  GET_CUSTOMERS: `${API}/customer`,
-  GET_CUSTOMER: `${API}/customer`,
-  ADD_CUSTOMER: `${API}/customer`,
-  UPDATE_CUSTOMER: `${API}/customer`,
-  DELETE_CUSTOMER: `${API}/customer`,
+  GET_DEPARTMENTS: `${API}/department`,
+  GET_ALL_DEPARTMENTS: `${API}/department/all`,
+  GET_DEPARTMENT: `${API}/department`,
+  ADD_DEPARTMENT: `${API}/department`,
+  UPDATE_DEPARTMENT: `${API}/department`,
+  DELETE_DEPARTMENT: `${API}/department`,
 
-  //VETERINARY
+  //MACHINE
 
-  GET_VETERINARIES: `${API}/veterinary`,
-  GET_VETERINARY: `${API}/veterinary`,
-  UPDATE_VETERINARY: `${API}/veterinary`,
-  DELETE_VETERINARY: `${API}/veterinary`,
+  GET_MACHINES: `${API}/machine`,
+  GET_MACHINE: `${API}/machine`,
+  ADD_MACHINE: `${API}/machine`,
+  UPDATE_MACHINE: `${API}/machine`,
+  DELETE_MACHINE: `${API}/machine`,
 
-  //CLINIC
+  //OIL
 
-  CHECK_PET: `${API}/clinic/check`,
-  //PET
+  GET_OILS: `${API}/oil`,
+  GET_ALL_OILS: `${API}/oil/all`,
+  GET_OIL: `${API}/oil`,
+  ADD_OIL: `${API}/oil`,
+  UPDATE_OIL: `${API}/oil`,
+  DELETE_OIL: `${API}/oil`,
 
-  GET_PETS: `${API}/pet`,
-  GET_PET: `${API}/pet`,
-  ADD_PET: `${API}/pet`,
-  UPDATE_PET: `${API}/pet`,
-  DELETE_PET: `${API}/pet`,
+  //STORAGE
 
-  //PRODUCT
+  GET_STORAGES: `${API}/storage`,
+  GET_STORAGE: `${API}/storage`,
+  ADD_STORAGE: `${API}/storage`,
+  UPDATE_STORAGE: `${API}/storage`,
+  DELETE_STORAGE: `${API}/storage`,
 
-  GET_PRODUCTS: `${API}/product`,
-  GET_PRODUCT: `${API}/product`,
-  ADD_PRODUCT: `${API}/product`,
-  UPDATE_PRODUCT: `${API}/product`,
-  DELETE_PRODUCT: `${API}/product`,
+  //ORDER
 
-  //SHOP
+  GET_ORDERS: `${API}/order`,
+  GET_ORDER: `${API}/order`,
+  ADD_ORDER: `${API}/order`,
+  UPDATE_ORDER: `${API}/order`,
+  DELETE_ORDER: `${API}/order`,
 
-  ADOPT: `${API}/shop/adopt`,
-  BUY: `${API}/shop/buy`,
+  //DELIVERY
+
+  GET_DELIVERIES: `${API}/delivery`,
+  GET_DELIVERY: `${API}/delivery`,
+  ADD_DELIVERY: `${API}/delivery`,
+  UPDATE_DELIVERY: `${API}/delivery`,
+  DELETE_DELIVERY: `${API}/delivery`,
 
   //CONFIG
 

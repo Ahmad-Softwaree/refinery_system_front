@@ -2,46 +2,45 @@ import { UtilContext } from "@/context/UtilContext";
 import { CONTEXT_TYPEs } from "@/context";
 import { useContext } from "react";
 import { Loader } from ".";
-import {
-  useDeleteManager,
-  useMakeEmployee,
-  useMakeHighManager,
-} from "@/react-query/query/manager.query";
-import {
-  useDeleteEmployee,
-  useMakeManager,
-} from "@/react-query/query/employee.query";
-import { useDeletePet } from "@/react-query/query/pet.query";
-import { useAdopt, useBuy } from "@/react-query/query/shop.query";
+
+import { useDeleteEmployee } from "@/react-query/query/employee.query";
+import { useDeleteMachine } from "@/react-query/query/machine.query";
+import { useDeleteOil } from "@/react-query/query/oil.query";
+import { useDeleteStorage } from "@/react-query/query/storage.query";
+import { useDeleteOrder } from "@/react-query/query/order.query";
+import { useDeleteDelivery } from "@/react-query/query/delivery.query";
 
 export default function operation() {
   const {
     dispatch,
     state: { id, method, image, type, data },
   } = useContext(UtilContext);
-  const { mutateAsync: makeEmployee, isPending: makeEmployeeLoading } =
-    useMakeEmployee(id);
-  const { mutateAsync: makeHighManager, isPending: makeHighManagerLoading } =
-    useMakeHighManager(id);
-  const { mutateAsync: deleteManager, isPending: deleteManagerLoading } =
-    useDeleteManager(id);
-  const { mutateAsync: makeManager, isPending: makeManagerLoading } =
-    useMakeManager(id);
+
   const { mutateAsync: deleteEmployee, isPending: deleteEmployeeLoading } =
     useDeleteEmployee(id);
-  const { mutateAsync: deletePet, isPending: deletePetLoading } =
-    useDeletePet(id);
-  const { mutateAsync: adopt, isPending: adoptLoading } = useAdopt(id);
-  const { mutateAsync: buy, isPending: buyLoading } = useBuy(id);
+
+  const { mutateAsync: deleteMachine, isPending: deleteMachineLoading } =
+    useDeleteMachine(id);
+
+  const { mutateAsync: deleteOil, isPending: deleteOilLoading } =
+    useDeleteOil(id);
+
+  const { mutateAsync: deleteStorage, isPending: deleteStorageLoading } =
+    useDeleteStorage(id);
+
+  const { mutateAsync: deleteOrder, isPending: deleteOrderLoading } =
+    useDeleteOrder(id);
+
+  const { mutateAsync: deleteDelivery, isPending: deleteDeliveryLoading } =
+    useDeleteDelivery(id);
+
   const flag = Boolean(
-    makeEmployeeLoading ||
-      makeHighManagerLoading ||
-      deleteManagerLoading ||
-      makeManagerLoading ||
-      deleteEmployeeLoading ||
-      deletePetLoading ||
-      adoptLoading ||
-      buyLoading
+    deleteEmployeeLoading ||
+      deleteMachineLoading ||
+      deleteOilLoading ||
+      deleteOrderLoading ||
+      deleteStorageLoading ||
+      deleteDeliveryLoading
   );
 
   return (
@@ -49,29 +48,23 @@ export default function operation() {
       onSubmit={async (e) => {
         e.preventDefault();
         switch (method) {
-          case CONTEXT_TYPEs.MAKE_EMPLOYEE:
-            await makeEmployee();
-            break;
-          case CONTEXT_TYPEs.MAKE_HIGH_MANAGER:
-            await makeHighManager();
-            break;
-          case CONTEXT_TYPEs.DELETE_MANAGER:
-            await deleteManager();
-            break;
           case CONTEXT_TYPEs.DELETE_EMPLOYEE:
             await deleteEmployee();
             break;
-          case CONTEXT_TYPEs.MAKE_MANAGER:
-            await makeManager();
+          case CONTEXT_TYPEs.DELETE_MACHINE:
+            await deleteMachine();
             break;
-          case CONTEXT_TYPEs.DELETE_PET:
-            await deletePet({ image });
+          case CONTEXT_TYPEs.DELETE_OIL:
+            await deleteOil();
             break;
-          case CONTEXT_TYPEs.ADOPT:
-            await adopt(data);
+          case CONTEXT_TYPEs.DELETE_STORAGE:
+            await deleteStorage();
             break;
-          case CONTEXT_TYPEs.BUY:
-            await buy(data);
+          case CONTEXT_TYPEs.DELETE_ORDER:
+            await deleteOrder();
+            break;
+          case CONTEXT_TYPEs.DELETE_DELIVERY:
+            await deleteDelivery();
             break;
           default:
             break;

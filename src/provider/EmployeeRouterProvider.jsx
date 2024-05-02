@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 
 export default function EmployeeRouterProvider({ Component }) {
   const { isLoading, data } = useGetCurrentUser();
-  let roles = ["employee", "manager", "high_manager"];
+  let roles = ["employee", "manager"];
   if (isLoading) return <Fallback />;
   if (!data && !isLoading) return <Navigate to={`/login`} />;
   if (data && !roles.includes(data?.role)) return <Navigate to={`/`} />;

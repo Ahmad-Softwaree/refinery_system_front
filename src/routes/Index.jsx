@@ -1,7 +1,6 @@
 import Login from "@/pages/_root/Login";
 import RootLayout from "@/pages/_root/RootLayout";
 import Home from "@/pages/_user/Home";
-import Managers from "@/pages/_user/Managers";
 import Profile from "@/pages/_user/Profile";
 import UserLayout from "@/pages/_user/UserLayout";
 import Error from "@/pages/Error";
@@ -12,20 +11,15 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import HighManagerRouterProvider from "@/provider/HighManagerRouterProvider";
 import EmployeeRouterProvider from "@/provider/EmployeeRouterProvider";
 import ManagerRouterProvider from "@/provider/ManagerRouterProvider";
 import Employees from "@/pages/_user/Employees";
-import Pets from "@/pages/_user/Pets";
-import Products from "@/pages/_user/Products";
-import Veterinaries from "@/pages/_user/Veterinaries";
-import VeterinarianRouterProvider from "@/provider/VeterinarianRouterProvider";
-import Clinic from "@/pages/_user/Clinic";
-import Customers from "@/pages/_user/Customers";
-import Shop from "@/pages/_user/Shop";
-import AllRouterProvider from "@/provider/AllRouterProvider";
-import PetsReceipts from "@/pages/_user/PetsReceipts";
-import ProductsReceipts from "@/pages/_user/ProductReceipts";
+import Machines from "@/pages/_user/Machines";
+import Oils from "@/pages/_user/Oils";
+import Storages from "@/pages/_user/Storages";
+import Orders from "@/pages/_user/Order";
+import Deliveries from "@/pages/_user/Deliveries";
+import Departments from "@/pages/_user/Departments";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,26 +40,23 @@ const router = createBrowserRouter(
           errorElement={<Error />}
           path="/"
           element={<EmployeeRouterProvider Component={UserLayout} />}>
-          <Route path="pets" errorElement={<Error />} element={<Pets />} />
+          <Route index errorElement={<Error />} element={<Home />} />
           <Route
-            path="products"
+            path="profile"
             errorElement={<Error />}
-            element={<Products />}
+            element={<Profile />}
           />
+          <Route path="oils" errorElement={<Error />} element={<Oils />} />{" "}
           <Route
-            path="veterinarians"
+            path="storages"
             errorElement={<Error />}
-            element={<Veterinaries />}
-          />
-          <Route
-            path="customers"
-            errorElement={<Error />}
-            element={<Customers />}
+            element={<Storages />}
           />{" "}
+          <Route path="orders" errorElement={<Error />} element={<Orders />} />{" "}
           <Route
-            path="shop/:customer_id"
+            path="deliveries"
             errorElement={<Error />}
-            element={<Shop />}
+            element={<Deliveries />}
           />
         </Route>
       </>
@@ -79,48 +70,15 @@ const router = createBrowserRouter(
             errorElement={<Error />}
             element={<Employees />}
           />
-        </Route>
-      </>
-      <>
-        <Route
-          errorElement={<Error />}
-          path="/"
-          element={<AllRouterProvider Component={UserLayout} />}>
-          <Route index errorElement={<Error />} element={<Home />} />
           <Route
-            path="profile"
+            path="departments"
             errorElement={<Error />}
-            element={<Profile />}
-          />
-        </Route>
-      </>
-      <>
-        <Route
-          errorElement={<Error />}
-          path="/"
-          element={<VeterinarianRouterProvider Component={UserLayout} />}>
-          <Route path="clinic" errorElement={<Error />} element={<Clinic />} />
-        </Route>
-      </>
-      <>
-        <Route
-          errorElement={<Error />}
-          path="/"
-          element={<HighManagerRouterProvider Component={UserLayout} />}>
-          <Route
-            path="managers"
-            errorElement={<Error />}
-            element={<Managers />}
+            element={<Departments />}
           />
           <Route
-            path="pet_receipts"
+            path="machines"
             errorElement={<Error />}
-            element={<PetsReceipts />}
-          />
-          <Route
-            path="product_receipts"
-            errorElement={<Error />}
-            element={<ProductsReceipts />}
+            element={<Machines />}
           />
         </Route>
       </>

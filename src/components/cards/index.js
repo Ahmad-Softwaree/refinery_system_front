@@ -1,8 +1,7 @@
-export { default as ManagerCard } from "./ManagerCard";
 export { default as EmployeeCard } from "./EmployeeCard";
-export { default as PetCard } from "./PetCard";
-export { default as ProductCard } from "./ProductCard";
-export { default as VeterinaryCard } from "./VeterinaryCard";
-export { default as CustomerCard } from "./CustomerCard";
-export { default as PetsReceiptCard } from "./PetsReceiptCard";
-export { default as ProductsReceiptCard } from "./ProductsReceiptCard";
+export { default as MachineCard } from "./MachineCard";
+export { default as DepartmentCard } from "./DepartmentCard";
+export { default as OilCard } from "./OilCard";
+export { default as OrderCard } from "./OrderCard";
+export { default as StorageCard } from "./StorageCard";
+export { default as DeliveryCard } from "./DeliveryCard";

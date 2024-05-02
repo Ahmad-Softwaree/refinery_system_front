@@ -4,7 +4,7 @@ const Login = () => {
   return (
     <div className="w-full flex flex-col justify-center items-center gap-10 h-screen">
       <h1 className="w-full text-center text-sub-heading2-semibold md:text-sub-heading1-bold text-tertiary-500">
-        Pet Management System
+        Refinery Management System
       </h1>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 shadow-md bg-secondary-500 rounded-md  max-w-[600px]">
         <div className="col-span-full md:col-span-1 p-5 order-2 md:order-1">

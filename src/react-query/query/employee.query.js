@@ -7,9 +7,9 @@ import {
 } from "@tanstack/react-query";
 import {
   deleteEmployee,
+  getAllEmployees,
   getEmployee,
   getEmployees,
-  makeManager,
   updateEmployee,
 } from "../action/employee.action";
 import { generateToast } from "@/lib/functions";
@@ -26,37 +26,20 @@ export function useGetEmployees() {
     retry: 0,
   });
 }
-
+export function useGetAllEmployees() {
+  const { toast } = useToast();
+  return useQuery({
+    queryKey: [QUERY_KEYS.ALL_EMPLOYEES],
+    queryFn: () => getAllEmployees(toast),
+    retry: 0,
+  });
+}
 export function useGetEmployee(id) {
   const { toast } = useToast();
   return useQuery({
     queryKey: [QUERY_KEYS.EMPLOYEE],
     queryFn: () => getEmployee(toast, id),
     retry: 0,
-  });
-}
-
-export function useMakeManager(id) {
-  const { toast } = useToast();
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: () => makeManager(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries([QUERY_KEYS.EMPLOYEES]);
-      return toast({
-        title: "Success",
-        description: "Employee Update Successfully",
-      });
-    },
-    onError: (error) => {
-      const errors = generateToast(error);
-      return errors.forEach((err) => {
-        toast({
-          title: err.title,
-          description: err.description,
-        });
-      });
-    },
   });
 }
 

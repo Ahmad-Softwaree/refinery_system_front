@@ -1,4 +1,9 @@
-export { default as ProfileForm } from "./ProfileForm";
-export { default as ManagerForm } from "./ManagerForm";
 export { default as LoginForm } from "./LoginForm";
-export { default as PetForm } from "./PetForm";
+export { default as ProfileForm } from "./ProfileForm";
+export { default as EmployeeForm } from "./EmployeeForm";
+export { default as DepartmentForm } from "./DepartmentForm";
+export { default as MachineForm } from "./MachineForm";
+export { default as OilForm } from "./OilForm";
+export { default as StorageForm } from "./StorageForm";
+export { default as OrderForm } from "./OrderForm";
+export { default as DeliveryForm } from "./DeliveryForm";

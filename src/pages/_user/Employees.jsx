@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import EmployeeGrid from "@/containers/_user/EmployeeGrid";
+import EmployeesGrid from "@/containers/_user/EmployeesGrid";
 import { UiContext } from "@/context/UiContext";
 import { CONTEXT_TYPEs } from "@/context";
 
@@ -49,8 +49,8 @@ const Employees = () => {
                         <TableHead>Age</TableHead>
                         <TableHead>Salary</TableHead>
                         <TableHead>Role</TableHead>
+                        <TableHead>Department</TableHead>
 
-                        <TableHead>Promote</TableHead>
                         <TableHead>Hire Date</TableHead>
 
                         <TableHead></TableHead>
@@ -60,7 +60,7 @@ const Employees = () => {
                     <TableBody>
                       {data.pages.map((row, index) => {
                         return (
-                          <EmployeeGrid key={index} page={index} row={row} />
+                          <EmployeesGrid key={index} page={index} row={row} />
                         );
                       })}
                     </TableBody>

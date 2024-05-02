@@ -5,6 +5,7 @@ import { useRegister } from "@/react-query/query/auth.query";
 import { CONTEXT_TYPEs } from "@/context";
 import { useUpdateEmployee } from "@/react-query/query/employee.query";
 import { Loader } from "../shared";
+import { useGetAllDepartments } from "@/react-query/query/department.query";
 const EmployeeForm = () => {
   const {
     dispatch,
@@ -12,20 +13,25 @@ const EmployeeForm = () => {
   } = useContext(UiContext);
   const { mutateAsync, isPending } =
     type !== "update" ? useRegister() : useUpdateEmployee(id);
-  const name = useRef();
+  const { data: departments, isPending: departmentsLoading } =
+    useGetAllDepartments();
+
+  const user_name = useRef();
   const email = useRef();
   const phone = useRef();
   const age = useRef();
   const gender = useRef();
   const salary = useRef();
   const password = useRef();
+  const dep_id = useRef();
   const formRef = useRef();
 
   useEffect(() => {
     if (data && type === "update") {
-      name.current.value = data?.name;
+      user_name.current.value = data?.user_name;
       email.current.value = data?.email;
       phone.current.value = data?.phone;
+      dep_id.current.value = data?.dep_id;
       age.current.value = data?.age;
       gender.current.value = data?.gender;
       salary.current.value = data?.salary;
@@ -38,13 +44,14 @@ const EmployeeForm = () => {
       onSubmit={async (e) => {
         e.preventDefault();
         await mutateAsync({
-          name: name.current.value,
+          user_name: user_name.current.value,
           email: email.current.value,
           phone: phone.current.value,
           age: age.current.value,
           gender: gender.current.value,
           salary: salary.current.value,
           password: password.current.value,
+          dep_id: dep_id.current.value,
           role: "employee",
         });
         formRef.current.reset();
@@ -58,7 +65,7 @@ const EmployeeForm = () => {
       </h2>
       <FormControl>
         <FormLabel>Name</FormLabel>
-        <Input ref={name} type="text" />
+        <Input ref={user_name} type="text" />
       </FormControl>
       <FormControl>
         <FormLabel>Email</FormLabel>
@@ -91,7 +98,18 @@ const EmployeeForm = () => {
           </option>
         </Select>
       </FormControl>
-
+      <FormControl>
+        <FormLabel>Department</FormLabel>
+        <Select ref={dep_id} placeholder="Select Department">
+          {departments?.map((val, index) => {
+            return (
+              <option key={index} className="text-primary-500" value={val.id}>
+                {val.name}
+              </option>
+            );
+          })}
+        </Select>
+      </FormControl>
       <button
         type="submit"
         disabled={isPending}

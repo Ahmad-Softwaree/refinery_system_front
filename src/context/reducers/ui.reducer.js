@@ -5,13 +5,13 @@ export const uiState = {
   id: "",
   data: null,
   profile: false,
-  manager: false,
   employee: false,
-  customer: false,
-  pet: false,
-  product: false,
-  veterinary: false,
-  clinic: false,
+  department: false,
+  machine: false,
+  oil: false,
+  storage: false,
+  order: false,
+  delivery: false,
 };
 
 export const uiReducer = (state = uiState, action) => {
@@ -25,22 +25,15 @@ export const uiReducer = (state = uiState, action) => {
         id: "",
         data: null,
         profile: false,
-        manager: false,
         employee: false,
-        customer: false,
-        pet: false,
-        veterinary: false,
-        product: false,
-        clinic: false,
+        department: false,
+        machine: false,
+        oil: false,
+        storage: false,
+        order: false,
+        delivery: false,
       };
-    case CONTEXT_TYPEs.CLINIC_FORM:
-      return {
-        ...state,
-        type: payload?.type,
-        id: payload?.id,
-        data: payload?.data,
-        clinic: !state.clinic,
-      };
+
     case CONTEXT_TYPEs.PROFILE_FORM:
       return {
         ...state,
@@ -49,21 +42,14 @@ export const uiReducer = (state = uiState, action) => {
         data: payload?.data,
         profile: !state.profile,
       };
-    case CONTEXT_TYPEs.VETERINARY_FORM:
+
+    case CONTEXT_TYPEs.DEPARTMENT_FORM:
       return {
         ...state,
         type: payload?.type,
         id: payload?.id,
         data: payload?.data,
-        veterinary: !state.veterinary,
-      };
-    case CONTEXT_TYPEs.MANAGER_FORM:
-      return {
-        ...state,
-        type: payload?.type,
-        id: payload?.id,
-        data: payload?.data,
-        manager: !state.manager,
+        department: !state.department,
       };
     case CONTEXT_TYPEs.EMPLOYEE_FORM:
       return {
@@ -73,30 +59,45 @@ export const uiReducer = (state = uiState, action) => {
         data: payload?.data,
         employee: !state.employee,
       };
-    case CONTEXT_TYPEs.PET_FORM:
+    case CONTEXT_TYPEs.MACHINE_FORM:
       return {
         ...state,
         type: payload?.type,
         id: payload?.id,
         data: payload?.data,
-        pet: !state.pet,
+        machine: !state.machine,
       };
-
-    case CONTEXT_TYPEs.CUSTOMER_FORM:
+    case CONTEXT_TYPEs.OIL_FORM:
       return {
         ...state,
         type: payload?.type,
         id: payload?.id,
         data: payload?.data,
-        customer: !state.customer,
+        oil: !state.oil,
       };
-    case CONTEXT_TYPEs.PRODUCT_FORM:
+    case CONTEXT_TYPEs.STORAGE_FORM:
       return {
         ...state,
         type: payload?.type,
         id: payload?.id,
         data: payload?.data,
-        product: !state.product,
+        storage: !state.storage,
+      };
+    case CONTEXT_TYPEs.ORDER_FORM:
+      return {
+        ...state,
+        type: payload?.type,
+        id: payload?.id,
+        data: payload?.data,
+        order: !state.order,
+      };
+    case CONTEXT_TYPEs.DELIVERY_FORM:
+      return {
+        ...state,
+        type: payload?.type,
+        id: payload?.id,
+        data: payload?.data,
+        delivery: !state.delivery,
       };
 
     default:

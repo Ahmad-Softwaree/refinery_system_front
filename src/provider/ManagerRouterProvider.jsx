@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 
 export default function ManagerRouterProvider({ Component }) {
   const { isLoading, data } = useGetCurrentUser();
-  let roles = ["manager", "high_manager"];
+  let roles = ["manager"];
   if (isLoading) return <Fallback />;
   if (!data && !isLoading) return <Navigate to={`/login`} />;
   if (data && !roles.includes(data?.role)) return <Navigate to={`/`} />;

@@ -19,6 +19,23 @@ export const getEmployees = async (toast, pageParam) => {
     });
   }
 };
+export const getAllEmployees = async (toast) => {
+  try {
+    const {
+      data: { data },
+    } = await authApi.get(`${URLs.GET_ALL_EMPLOYEES}`);
+
+    return data;
+  } catch (error) {
+    const errors = generateToast(error);
+    return errors.forEach((err) => {
+      toast({
+        title: err.title,
+        description: err.description,
+      });
+    });
+  }
+};
 
 export const getEmployee = async (toast, id) => {
   try {
@@ -35,18 +52,6 @@ export const getEmployee = async (toast, id) => {
         description: err.description,
       });
     });
-  }
-};
-
-export const makeManager = async (id) => {
-  try {
-    const {
-      data: { data },
-    } = await authApi.put(`${URLs.MAKE_MANAGER}/${id}`);
-
-    return data;
-  } catch (error) {
-    throw error;
   }
 };
 

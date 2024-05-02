@@ -1,9 +1,13 @@
-import { ManagerForm, PetForm, ProfileForm } from "@/components/forms";
-import ClinicForm from "@/components/forms/ClinicForm";
-import CustomerForm from "@/components/forms/CustomerForm";
+import {
+  ProfileForm,
+  DepartmentForm,
+  OilForm,
+  StorageForm,
+  OrderForm,
+  DeliveryForm,
+  MachineForm,
+} from "@/components/forms";
 import EmployeeForm from "@/components/forms/EmployeeForm";
-import ProductForm from "@/components/forms/ProductForm";
-import VeterinaryForm from "@/components/forms/VeterinaryForm";
 import { Operation, Opacity } from "@/components/shared";
 import { AuthContext } from "@/context/AuthContext";
 import { UiContext } from "@/context/UiContext";
@@ -14,13 +18,13 @@ const Modals = () => {
   const {
     state: {
       profile,
-      manager,
       employee,
-      customer,
-      pet,
-      product,
-      veterinary,
-      clinic,
+      department,
+      machine,
+      oil,
+      storage,
+      order,
+      delivery,
     },
   } = useContext(UiContext);
 
@@ -33,44 +37,30 @@ const Modals = () => {
   const flag = Boolean(
     profile ||
       operation ||
-      manager ||
       employee ||
-      customer ||
-      pet ||
-      product ||
-      veterinary ||
-      clinic
+      department ||
+      machine ||
+      oil ||
+      storage ||
+      order ||
+      delivery
   );
   return (
     <>
       {flag && <Opacity />}
       {operation && <Operation />}
-      {profile && ["manager", "high_manager"].includes(user?.role) && (
-        <ProfileForm />
+      {profile && ["manager"].includes(user?.role) && <ProfileForm />}
+      {employee && ["manager"].includes(user?.role) && <EmployeeForm />}
+      {department && ["manager"].includes(user?.role) && <DepartmentForm />}
+      {machine && ["manager"].includes(user?.role) && <MachineForm />}
+      {oil && ["manager", "employee"].includes(user?.role) && <OilForm />}
+      {storage && ["manager", "employee"].includes(user?.role) && (
+        <StorageForm />
       )}
-      {manager && ["high_manager"].includes(user?.role) && <ManagerForm />}
-      {employee && ["high_manager", "manager"].includes(user?.role) && (
-        <EmployeeForm />
+      {order && ["manager", "employee"].includes(user?.role) && <OrderForm />}
+      {delivery && ["manager", "employee"].includes(user?.role) && (
+        <DeliveryForm />
       )}
-      {veterinary &&
-        ["high_manager", "manager", "employee"].includes(user?.role) && (
-          <VeterinaryForm />
-        )}
-      {pet && ["high_manager", "manager", "employee"].includes(user?.role) && (
-        <PetForm />
-      )}
-      {clinic &&
-        ["high_manager", "manager", "veterinary"].includes(user?.role) && (
-          <ClinicForm />
-        )}
-      {customer &&
-        ["high_manager", "manager", "employee"].includes(user?.role) && (
-          <CustomerForm />
-        )}{" "}
-      {product &&
-        ["high_manager", "manager", "employee"].includes(user?.role) && (
-          <ProductForm />
-        )}{" "}
     </>
   );
 };
